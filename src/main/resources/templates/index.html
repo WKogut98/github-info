@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xml-th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>GitHub Info</title>
+    <style>
+        body{font-family: sans-serif;}
+        .error {color: red; font-weight: bold;}
+        .search-container{text-align:center;}
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <h1>GitHub Info</h1>
+        <form th:action="@{/repos}" method="post">
+            <input type="text" name="username" placeholder="Enter username"/>
+            <button type="submit">Search</button>
+        </form>
+        <div th:if="${error}">
+            <p class="error" th:text="${error}"></p>
+        </div>
+    </div>
+    <div class="repos-container">
+        <h3 th:if="${repositories?.size() > 0}" th:text="'Repositories for ' + ${username}"></h3>
+        <table th:if="${repositories?.size() > 0}">
+            <thead>
+            <tr>
+                <th>Repository Name</th>
+                <th>Owner</th>
+                <th>Branches</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="repo : ${repositories}">
+                <td th:text="${repo.name}"></td>
+                <td th:text="${repo.owner}"></td>
+                <td>
+                    <ul>
+                        <li th:each="branch : ${repo.branches}">
+                            <span th:text="${branch.name} + ' (SHA: ' + ${branch.lastCommitSha} + ')'"></span>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
