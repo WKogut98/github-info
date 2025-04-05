@@ -22,6 +22,7 @@ public class APIService {
 
     public List<GitRepository> getUserRepositories(String username)
     {
+        if(username.isEmpty() || username.isBlank() || username.equals(null)) throw new UsernameNotFoundException("Username cannot be empty");
         String URL = "https://api.github.com/users/"+username+"/repos";
         try
         {
