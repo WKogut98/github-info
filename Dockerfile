@@ -4,6 +4,6 @@ RUN chmod +x gradlew
 RUN ./gradlew clean build -x test
 
 FROM openjdk:21-jdk-slim
-COPY --from=build /target/github-info-0.0.1-SNAPSHOT.jar github-info.jar
+COPY --from=build /home/gradle/src/build/libs/github-info-0.0.1-SNAPSHOT.jar github-info.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "github-info.jar"]
