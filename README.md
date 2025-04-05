@@ -3,10 +3,14 @@
  for a given user. This information is being acceced via GitHub API.
  
  ### Instalation instructions
+ #### Running locally
  1. Clone this project
  2. Open in the IDE of your choice
  3. Run the project from the file GithubInfoApplication.java
  4. Open your web browser and go to localhost:8080
+
+ #### Running via the web
+ Go to https://github-info.onrender.com 
  
  ### How to use
  Simply type the requested username into the searchbar on the top of the page and click "Search"
