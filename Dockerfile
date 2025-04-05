@@ -1,5 +1,6 @@
 FROM gradle:8.13-jdk21-corretto-al2023 AS build
 COPY . .
+RUN chmod +x gradlew
 RUN ./gradlew clean build -x test
 
 FROM openjdk:21-jdk-slim
